@@ -14,14 +14,14 @@ GitHub 저장소 `https://github.com/byki2227/codyssey-e2-1`을 Import합니다.
 | --- | --- |
 | Framework Preset | Other |
 | Root Directory | 저장소 루트 `.` — `project` 폴더를 선택하지 않습니다 |
-| Build Command | `node project/scripts/build-vercel.mjs` |
+| Build Command | `node scripts/build-vercel.mjs` |
 | Output Directory | `dist` |
 | Install Command | 비워 둠 — 앱 의존성 설치 없음 |
 | Environment Variables | 없음 |
 
 루트 `vercel.json`에 프레임워크·빌드·출력 경로를 기록했습니다. 대시보드에 과거 Override가 있다면 위 값과 맞춥니다. Vercel 빌드는 Node로 이미 생성된 루트 HTML을 `dist/index.html`로 복사합니다. 문서·원본 이미지·소스를 웹 공개 경로에 복사하지 않습니다.
 
-소스를 수정한 뒤에는 로컬에서 `python3 project/build.py`로 루트 HTML을 갱신하고 함께 커밋합니다. Vercel 빌드에는 Python 설치가 필요하지 않습니다. 단순 HTML도 정적 배포할 수 있으며, 이 프로젝트는 배포 파일을 분리하기 위해 작은 패키징 단계를 사용합니다.
+소스를 수정한 뒤에는 로컬에서 `python3 build.py`로 루트 HTML을 갱신하고 함께 커밋합니다. Vercel 빌드에는 Python 설치가 필요하지 않습니다. 단순 HTML도 정적 배포할 수 있으며, 이 프로젝트는 배포 파일을 분리하기 위해 작은 패키징 단계를 사용합니다.
 
 공식 근거: [Vercel Build 설정](https://vercel.com/docs/builds/configure-a-build), [vercel.json 설정](https://vercel.com/docs/project-configuration/vercel-json), [환경변수](https://vercel.com/docs/environment-variables).
 
@@ -52,12 +52,12 @@ GitHub 저장소 `https://github.com/byki2227/codyssey-e2-1`을 Import합니다.
 
 ## 향후 Firebase: 준비된 코드와 남은 작업
 
-`project/src/storage.js`는 비동기 `load()`, `save(snapshot)`, `clear()` 저장 인터페이스를 제공합니다.
+`src/storage.js`는 비동기 `load()`, `save(snapshot)`, `clear()` 저장 인터페이스를 제공합니다.
 
 - 현재: `createSessionStore()`를 사용합니다.
 - 향후: `createFirebaseStore({db, uid, doc, getDoc, setDoc, deleteDoc})`를 제공합니다. Firebase 모듈을 인증 후 주입하는 형태이며 지금은 호출하지 않습니다.
 - 예정 경로: `users/{uid}/settlements/current`.
-- `project/firebase/firestore.rules`에는 인증된 소유자만 자기 문서에 접근하는 규칙 초안이 있습니다. 아직 배포되지 않았습니다.
+- `firebase/firestore.rules`에는 인증된 소유자만 자기 문서에 접근하는 규칙 초안이 있습니다. 아직 배포되지 않았습니다.
 - Firebase 생성 시 수행할 일: 프로젝트·Web App 등록 → Firestore 생성 → 인증 방식 구현 → Firebase 모듈과 설정 주입 → 저장 어댑터 교체 → 규칙·입력 스키마·오프라인/오류 동작을 검증합니다.
 - 브라우저 세션 데이터를 DB로 자동 업로드하지 않습니다. 마이그레이션이나 동기화는 추후 별도로 결정합니다.
 

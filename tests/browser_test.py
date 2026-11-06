@@ -16,7 +16,7 @@ with sync_playwright() as p:
     errors=[]; external=[]
     page.on('pageerror',lambda e: errors.append(str(e)))
     page.on('request',lambda r:external.append(r.url) if r.url.startswith(('http:','https:')) else None)
-    page.goto((ROOT.parent/'index.html').as_uri())
+    page.goto((ROOT/'index.html').as_uri())
     assert page.locator('html').get_attribute('lang')=='ko'
     page.screenshot(path=str(SHOTS/'desktop-home.png'),full_page=True)
     page.locator('[data-action=start]').click()
