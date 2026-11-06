@@ -8,12 +8,12 @@
 
 ## Vercel 새 프로젝트 설정
 
-GitHub 저장소 `https://github.com/byki2227/codyssey-e2-1`을 Import합니다.
+GitHub 저장소 `https://github.com/byki0304/myaitreasures`를 Import합니다.
 
 | 설정 | 값 |
 | --- | --- |
 | Framework Preset | Other |
-| Root Directory | 저장소 루트 `.` — `project` 폴더를 선택하지 않습니다 |
+| Root Directory | 저장소 루트 `./` (기본값 그대로) |
 | Build Command | `node scripts/build-vercel.mjs` |
 | Output Directory | `dist` |
 | Install Command | 비워 둠 — 앱 의존성 설치 없음 |
@@ -58,6 +58,8 @@ GitHub 저장소 `https://github.com/byki2227/codyssey-e2-1`을 Import합니다.
 - 향후: `createFirebaseStore({db, uid, doc, getDoc, setDoc, deleteDoc})`를 제공합니다. Firebase 모듈을 인증 후 주입하는 형태이며 지금은 호출하지 않습니다.
 - 예정 경로: `users/{uid}/settlements/current`.
 - `firebase/firestore.rules`에는 인증된 소유자만 자기 문서에 접근하는 규칙 초안이 있습니다. 아직 배포되지 않았습니다.
+- 루트 `firebase.json`은 Firebase CLI가 위 규칙 파일을 사용하도록 지정합니다. 프로젝트를 만든 뒤 `firebase use --add`로 프로젝트를 연결하고 `firebase deploy --only firestore:rules`로 규칙을 배포합니다.
+- Firebase Authentication의 **Authorized domains**에 Vercel 운영 도메인(예: `myaitreasures.vercel.app`)과 사용자 지정 도메인을 추가해야 로그인이 동작합니다.
 - Firebase 생성 시 수행할 일: 프로젝트·Web App 등록 → Firestore 생성 → 인증 방식 구현 → Firebase 모듈과 설정 주입 → 저장 어댑터 교체 → 규칙·입력 스키마·오프라인/오류 동작을 검증합니다.
 - 브라우저 세션 데이터를 DB로 자동 업로드하지 않습니다. 마이그레이션이나 동기화는 추후 별도로 결정합니다.
 
@@ -65,7 +67,11 @@ GitHub 저장소 `https://github.com/byki2227/codyssey-e2-1`을 Import합니다.
 
 ## 향후에 사용할 수 있는 환경변수 이름
 
-아래는 **향후 Firebase 빌드 설정의 제안 이름**입니다. 지금은 등록하지 않습니다. 현재 정적 앱은 이 환경변수를 읽지 않으며 자동 노출도 하지 않습니다. Firebase 연결 작업에서 빌드가 공개 설정을 HTML에 주입하도록 추가해야 합니다.
+아래는 **향후 Firebase 빌드 설정 이름**입니다. 지금은 등록하지 않습니다. 이름 목록은 루트 `.env.example`에도 있습니다.
+
+`scripts/build-vercel.mjs`는 Vercel 빌드 시 이 환경변수가 하나라도 있으면 `dist/index.html`의 `</head>` 앞에 `window.TREASURES_FIREBASE_CONFIG`로 공개 Web 설정을 주입합니다. 하나라도 설정했다면 `FIREBASE_API_KEY`, `FIREBASE_PROJECT_ID`, `FIREBASE_APP_ID`는 모두 필요하며, 빠지면 빌드가 실패합니다. 아무것도 없으면 주입하지 않고 지금처럼 동작합니다. 현재 앱 코드는 이 값을 아직 읽지 않습니다.
+
+환경변수를 추가·변경한 뒤에는 Vercel에서 **Redeploy**해야 반영됩니다.
 
 | 제안 이름 | Firebase Web 설정 필드 | 향후 용도 |
 | --- | --- | --- |
