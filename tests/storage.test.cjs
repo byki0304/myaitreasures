@@ -1,0 +1,20 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const S = vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../src/storage.js'),'utf8')+';TreasuresStorage');
+(async()=>{
+ const memory=new Map();
+ const store=S.createSessionStore(()=>({getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v),removeItem:k=>memory.delete(k)}));
+ assert.equal(await store.load(),null);
+ const record={version:1,data:{meeting:'Test'}};
+ await store.save(record);assert.equal(JSON.stringify(await store.load()),JSON.stringify(record));
+ await store.clear();assert.equal(await store.load(),null);
+ memory.set(S.KEY,'not json');assert.equal(await store.load(),null);assert.equal(memory.has(S.KEY),false);
+ let saved=null;let requested;
+ const cloud=S.createFirebaseStore({db:{},uid:'user-123',doc:(db,...segments)=>(requested=segments),getDoc:async()=>({exists:()=>saved!==null,data:()=>saved}),setDoc:async(ref,data)=>{saved=data},deleteDoc:async()=>{saved=null}});
+ assert.deepEqual(requested,['users','user-123','settlements','current']);
+ assert.equal(await cloud.load(),null);await cloud.save(record);assert.equal(await cloud.load(),record);await cloud.clear();assert.equal(await cloud.load(),null);
+ assert.throws(()=>S.createFirebaseStore({uid:''}));
+ console.log('PASS: session/Firebase adapter load/save/clear contract; Firebase tested with mocks only');
+})().catch(error=>{console.error(error);process.exitCode=1});
