@@ -1,5 +1,5 @@
 // Vercel's Node build only packages the already generated standalone app.
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 const root = new URL('../', import.meta.url);
 const html = await readFile(new URL('index.html', root), 'utf8');
@@ -31,4 +31,9 @@ if (Object.keys(firebaseConfig).length) {
 
 await mkdir(new URL('dist/', root), {recursive:true});
 await writeFile(new URL('dist/index.html', root), output);
+for (const file of ['site.webmanifest', 'favicon.ico']) await cp(new URL(file, root), new URL('dist/' + file, root));
+await cp(new URL('assets/icons/', root), new URL('dist/assets/icons/', root), {
+  recursive: true,
+  filter: src => !src.replace(/\\/g, '/').includes('/source')
+});
 console.log('Packaged standalone app:',fileURLToPath(new URL('dist/index.html', root)));

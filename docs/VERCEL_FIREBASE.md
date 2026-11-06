@@ -25,6 +25,13 @@ GitHub 저장소 `https://github.com/byki0304/myaitreasures`를 Import합니다.
 
 공식 근거: [Vercel Build 설정](https://vercel.com/docs/builds/configure-a-build), [vercel.json 설정](https://vercel.com/docs/project-configuration/vercel-json), [환경변수](https://vercel.com/docs/environment-variables).
 
+## 앱 설치 아이콘
+
+- 모바일(홈 화면·PWA): `assets/icons/icon-192.png`, `icon-512.png`, `icon-maskable-*.png`(Android 원형 마스크용), `apple-touch-icon.png`(iOS).
+- 데스크톱: `assets/icons/icon-desktop-*.png`(투명 배경), `icon-desktop.ico`(Windows 바로가기용), 루트 `favicon.ico`.
+- 설치 정보는 루트 `site.webmanifest`에 있고, `build.py`가 `index.html`에 연결합니다. Vercel 빌드는 매니페스트와 아이콘을 `dist`로 함께 복사합니다(원본 `assets/icons/source/` 제외).
+- 아이콘을 바꾸려면 `assets/icons/source/`의 원본 두 장을 교체하고 `python scripts/make-icons.py`를 실행합니다.
+
 ## 브라우저 임시 저장의 범위
 
 - 저장 위치: 사용자 기기 브라우저의 `sessionStorage`.
