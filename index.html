@@ -23,6 +23,40 @@
 .message-dialog-actions button{min-width:0;max-width:100%}
 @media(max-width:600px) and (orientation:portrait){.person-result{display:block}.person-result-heading{flex-direction:row;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}.person-result-heading h3{margin:0;min-width:0}.member-message-button{font-size:11px;flex-shrink:0;max-width:60%}.member-message-dialog{padding:20px}.message-dialog-actions{flex-direction:column}.message-dialog-actions button{width:100%}}
 @media(max-width:1000px) and (orientation:landscape){.member-message-dialog{padding:18px 24px}.member-message-dialog textarea{min-height:100px;max-height:35dvh}.member-message-dialog>.help{margin-bottom:10px}}
+/* Landing fits one viewport: type and spacing scale with height (svh) as well as width. */
+.landing-header{flex:none;padding-block:clamp(10px,3.3svh,30px)}
+.landing-copy{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(6px,3svh,60px);padding-bottom:clamp(6px,3svh,48px)}
+.landing-copy .eyebrow{margin-bottom:clamp(8px,2.6svh,25px)}
+.landing h1{font-size:clamp(24px,min(4.4vw,7.4svh),70px);margin-bottom:clamp(8px,3svh,28px)}
+.landing-lead{font-size:clamp(12px,min(1.25vw,2.1svh),17px);line-height:1.8;margin-bottom:0}
+.hero-actions{margin-top:clamp(10px,3.3svh,30px)}
+.hero-actions .primary{min-height:clamp(42px,6.3svh,57px);padding-block:clamp(10px,1.8svh,16px)}
+.privacy{margin-top:clamp(8px,2svh,18px);margin-bottom:0}
+.landing-footer{flex:none;padding-block:clamp(8px,2.4svh,25px) clamp(10px,3.4svh,32px)}
+@media(max-width:600px) and (orientation:portrait){
+.landing-header{padding-block:clamp(10px,2.6svh,20px)}
+.landing-copy{justify-content:flex-start;padding:clamp(4px,2.4svh,32px) 6vw 0}
+.landing-copy .eyebrow{margin-bottom:clamp(8px,2.2svh,18px)}
+.landing h1{font-size:clamp(24px,min(8vw,5.2svh),43px);margin-bottom:clamp(8px,2.2svh,20px)}
+.landing-lead{font-size:clamp(12px,1.9svh,13px)}
+.hero-actions{margin-top:clamp(10px,2.4svh,21px)}
+.hero-actions .primary{min-height:clamp(42px,6.2svh,51px)}
+.hero-actions .quiet{min-height:clamp(30px,4.4svh,36px);padding-block:4px}
+.privacy{margin-top:clamp(4px,1.4svh,12px)}
+.landing-footer{padding:clamp(8px,1.6svh,12px) 5vw clamp(12px,2.6svh,20px);gap:clamp(6px,1.6svh,12px)}
+}
+@media(max-width:1000px) and (orientation:landscape){
+.landing-header{padding-block:clamp(6px,2.4svh,12px)}
+.landing-copy{padding-top:clamp(2px,1.5svh,16px);padding-bottom:clamp(2px,1.5svh,12px)}
+.landing-copy .eyebrow{margin-bottom:clamp(4px,2svh,12px)}
+.landing h1{font-size:clamp(20px,min(5vw,7svh),30px);margin-bottom:clamp(4px,2.4svh,15px)}
+.landing-lead{font-size:clamp(11px,3svh,12px);line-height:1.6}
+.hero-actions{margin-top:clamp(6px,2.4svh,12px)}
+.hero-actions .primary{min-height:clamp(38px,10svh,44px);padding-block:8px}
+.privacy{margin-top:clamp(4px,1.6svh,10px)}
+.landing-footer{padding-block:clamp(4px,1.6svh,10px) clamp(6px,2.4svh,12px)}
+}
+@media(max-width:359px){.landing h1{font-size:clamp(22px,min(7.2vw,4.8svh),26px)}}
 </style></head><body><div id="app"></div><script>/* Integer-only settlement engine: no network, storage or external dependencies. */
 (function (global) {
   'use strict';
