@@ -22,6 +22,8 @@ assert.equal(E.validDate('2024-02-29'),true);
 const bad=sample();bad.people[1].name=' A ';assert.equal(E.validate(bad)['person-2'],'duplicateError');
 bad.expenses[0].members=[];assert.equal(E.validate(bad)['members-4'],'membersError');
 const limit=sample();limit.expenses[0].amount='1000000000';assert.equal(E.validate(limit).expenses,'totalError');
+for(const currency of ['KRW','USD','JPY']){const ok=sample();ok.currency=currency;assert.equal(E.validate(ok).currency,undefined);}
+const eur=sample();eur.currency='EUR';assert.equal(E.validate(eur).currency,'currencyError');
 let cases=0;
 for(let n=2;n<=20;n++)for(let k=0;k<80;k++){
  const data={meeting:'Property',date:'2026-11-06',currency:k%2?'JPY':'KRW',people:Array.from({length:n},(_,i)=>({id:i+1,name:String(i+1)})),expenses:[]};

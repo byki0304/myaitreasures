@@ -15,7 +15,7 @@
     const length = s => Array.from(s.trim()).length;
     if (length(data.meeting) < 1 || length(data.meeting) > 60) errors.meeting = 'meetingError';
     if (!validDate(data.date)) errors.date = 'dateError';
-    if (!['KRW', 'JPY'].includes(data.currency)) errors.currency = 'currencyError';
+    if (!['KRW', 'USD', 'JPY'].includes(data.currency)) errors.currency = 'currencyError';
     if (data.people.length < 2) errors.people = 'peopleError';
     const seen = new Set();
     for (const p of data.people) {

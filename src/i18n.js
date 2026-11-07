@@ -32,4 +32,7 @@ Object.assign(I18N.ja, {
 
 Object.assign(I18N.ko, {local:'이 탭에 임시 저장돼요. 새로고침해도 복원됩니다.',privacy:'로그인 없이 · 이 탭에만 임시 저장',storageUnavailable:'브라우저 임시 저장을 사용할 수 없습니다. 현재 화면에서는 계속 사용할 수 있지만 새로고침하면 입력이 사라집니다.'});
 Object.assign(I18N.en, {local:'Saved in this tab. Reloading restores your entries.',privacy:'No login · Temporary storage in this tab',storageUnavailable:'Temporary browser storage is unavailable. You can keep using this page, but reloading will clear your entries.'});
+Object.assign(I18N.ko, {usd:'달러 USD',currencyError:'원화, 달러 또는 엔화를 선택해 주세요.',amountErrorUsd:'0.01~10,000,000.00 사이의 금액을 소수점 둘째 자리까지 입력해 주세요.',totalErrorUsd:'총지출은 10,000,000.00달러 이하여야 합니다.'});
+Object.assign(I18N.en, {usd:'US dollar USD',currencyError:'Choose Korean won, US dollar, or Japanese yen.',amountErrorUsd:'Enter an amount from 0.01 to 10,000,000.00 with up to two decimal places.',totalErrorUsd:'Total expenses must not exceed $10,000,000.00.'});
+Object.assign(I18N.ja, {usd:'米ドル USD',currencyError:'韓国ウォン、米ドル、日本円のいずれかを選択してください。',amountErrorUsd:'0.01～10,000,000.00の金額を小数点以下2桁まで入力してください。',totalErrorUsd:'総支出は10,000,000.00ドル以下にしてください。'});
 Object.assign(I18N.ja, {local:'このタブに一時保存し、再読み込み時に復元します。',privacy:'ログイン不要 · このタブのみ一時保存',storageUnavailable:'ブラウザの一時保存を利用できません。この画面では利用できますが、再読み込みすると入力が消えます。'});
