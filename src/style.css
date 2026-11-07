@@ -56,3 +56,4 @@
 .landing-footer{padding-block:clamp(4px,1.6svh,10px) clamp(6px,2.4svh,12px)}
 }
 @media(max-width:359px){.landing h1{font-size:clamp(22px,min(7.2vw,4.8svh),26px)}}
+@media(min-width:1251px){.expense-fields{grid-template-columns:minmax(0,65fr) minmax(0,35fr)}}
