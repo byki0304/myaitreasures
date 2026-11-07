@@ -58,6 +58,13 @@
 }
 @media(max-width:359px){.landing h1{font-size:clamp(22px,min(7.2vw,4.8svh),26px)}}
 @media(min-width:1251px){.expense-fields{grid-template-columns:minmax(0,65fr) minmax(0,35fr)}}
+@media(min-width:1001px){.meeting-fields{grid-template-columns:minmax(0,65fr) minmax(0,35fr)}}
+@media(max-width:1000px) and (orientation:landscape){
+.meeting-fields{grid-template-columns:minmax(0,2fr) minmax(0,1.43fr) minmax(0,.77fr)}
+.meeting-fields .field-wide{position:relative}
+.meeting-fields .field-wide>small{position:absolute;top:0;right:0;line-height:inherit}
+.meeting-fields #currency{padding-inline:8px 2px;text-overflow:ellipsis}
+}
 </style></head><body><div id="app"></div><script>/* Integer-only settlement engine: no network, storage or external dependencies. */
 (function (global) {
   'use strict';
